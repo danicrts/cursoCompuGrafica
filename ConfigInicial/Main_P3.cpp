@@ -11,17 +11,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
-
 // Shaders
 #include "Shader.h"
 
 const GLint WIDTH = 800, HEIGHT = 600;
 
-
 int main() {
 	glfwInit();
-	//Verificaci�n de compatibilidad 
+	//Verificación de compatibilidad 
 	// Set all the required options for GLFW
 	/*glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -36,7 +33,7 @@ int main() {
 
 	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
 
-	//Verificaci�n de errores de creacion  ventana
+	//Verificacion de errores de creacion  ventana
 	if (nullptr == window)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -76,7 +73,7 @@ int main() {
 	// use with Orthographic Projection
 
 	//GLfloat vertices[] = {
- //      -0.5f*500, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,//Front
+	//  -0.5f*500, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,              //Front
 	//	0.5f * 500, -0.5f * 500, 0.5f * 500,  1.0f, 0.0f,0.0f,
 	//	0.5f * 500,  0.5f * 500, 0.5f * 500,  1.0f, 0.0f,0.0f,
 	//	0.5f * 500,  0.5f * 500, 0.5f * 500,  1.0f, 0.0f,0.0f,
@@ -166,8 +163,6 @@ int main() {
 	};
 
 
-
-
 	GLuint VBO, VAO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -231,7 +226,7 @@ int main() {
 		//El eje X va de izquierda a derecha
 		//El eje Y va de arriba a abajo 
 		//El eje Z al parecer aleja o acerca la vista, con -20 se ve bien el resultado
-		view = glm::translate(view, glm::vec3(-10.0f,0.0f, -20.0f)); //Esta traslación se utiliza cuando la vista en perspectica está activada
+		view = glm::translate(view, glm::vec3(-10.0f,0.0f, -20.0f)); //Esta traslación se utiliza cuando la vista en perspectiva está activada
 		model = glm::rotate( model, 0.0f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
 		
 		//El factor de escala puede ser distinto en cada eje 
@@ -252,37 +247,36 @@ int main() {
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		
+
 		//SEGUNDO CUBO 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(6.0f,0.0f,0.0f));
-		model = glm::rotate(model, 35.0f, glm::vec3(1.0f, 0.0f, 0.0f)); // use to compare orthographic and perspective projection
+		model = glm::translate(model, glm::vec3(5.0f, 0.0f,-10.0f));
+		//El eje x girará el cubo hacia arriba o hacia abajo, el eje y lo girará hacia la izquierda o derecha y el eje z aleja o acerca la vista*
+		model = glm::rotate(model, 180.0f, glm::vec3(0.0f, 1.0f, 0.0f)); // use to compare orthographic and perspective projection
 		model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
+
 		//TERCER CUBO
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(12.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(12.5f, 0.0f, 0.0f));
 		model = glm::rotate(model, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f)); // use to compare orthographic and perspective projection
 		model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
+
 		//CUARTO CUBO
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(20.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, 35.0f, glm::vec3(1.0f, 0.0f, 0.0f)); // use to compare orthographic and perspective projection
-		model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
+		model = glm::rotate(model, 15.0f, glm::vec3(1.0f, 0.0f, 0.0f)); // use to compare orthographic and perspective projection
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-		glBindVertexArray(0);
-
-
-
-		
-		
+		glBindVertexArray(0);	
 		
 
 		// Swap the screen buffers
@@ -296,8 +290,5 @@ int main() {
 	glfwTerminate();
 	return EXIT_SUCCESS;
 
-  
 
 }
-
-
