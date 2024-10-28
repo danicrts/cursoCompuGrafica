@@ -16,7 +16,7 @@ const GLint WIDTH = 800, HEIGHT = 600;
 
 int main() {
 	glfwInit();
-	//Verificaci�n de compatibilidad 
+	//Verificacion de compatibilidad 
 	/*glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
@@ -27,7 +27,7 @@ int main() {
 	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Dibujo de Primitivas en 2D", NULL, NULL);
 	glfwSetFramebufferSizeCallback(window, resize);
 	
-	//Verificaci�n de errores de creacion  ventana
+	//Verificacion de errores de creacion  ventana
 	if (window== NULL) 
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -74,42 +74,42 @@ int main() {
   		-0.5f,  0.5f, 0.0f,   1.0f,1.0f,0.0f,  // top left      //Elemento 3
 
 		//Para dibujar un cangrejo
-		 0.4f,  0.4f, 0.0f,   0.0f,1.0f,0.0f,  // top right     //Elemento 4
-		 0.4f, -0.4f, 0.0f,   1.0f,1.0f,0.0f,  // bottom right  //Elemento 5 
-		-0.4f, -0.4f, 0.0f,   1.0f,0.0f,1.0f,  // bottom left   //Elemento 6
-		-0.4f,  0.4f, 0.0f,   1.0f,1.0f,0.0f,  // top left      //Elemento 7... Vértices que forman un cuadrado
+		 0.4f,  0.4f, 0.0f,   1.0f,0.0f,0.0f,  // top right   //Elemento 4
+		 0.4f, -0.4f, 0.0f,   1.0f,0.5f,0.0f,  // bottom right  //Elemento 5 
+		-0.4f, -0.4f, 0.0f,   0.0f,0.0f,1.0f,  // bottom left   //Elemento 6
+		-0.4f,  0.4f, 0.0f,   0.0f,1.0f,1.0f,  // top left      //Elemento 7... Vértices que forman un cuadrado
 		
 		-0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.7f,  0.0f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.4f, -0.4f, 0.0f,  1.0f,1.0f,0.0f,                                      //Vértices que forman el triángulo izquierdo
+		-0.7f,  0.0f, 0.0f,  1.0f,1.0f,0.5f,
+		-0.4f, -0.4f, 0.0f,  0.0f,1.0f,0.0f,                                     //Vértices que forman el triángulo izquierdo
 		 
 		 0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.7f,  0.0f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.4f, -0.4f, 0.0f,  1.0f,1.0f,0.0f,                                     //Vértices que forman el triángulo derecho
+		 0.7f,  0.0f, 0.0f,  1.0f,0.5f,1.0f,
+		 0.4f, -0.4f, 0.0f,  1.0f,0.5f,0.5f,                                     //Vértices que forman el triángulo derecho
 
-		-0.7f,  0.0f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.4,  -0.6f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.4,  -0.4f, 0.0f,  1.0f,1.0f,0.0f,                                     //Pata izquierda
+		-0.7f,  0.0f, 0.0f,  0.5f,0.5f,0.0f,
+		-0.4,  -0.6f, 0.0f,  0.5f,0.0f,0.5f,
+		-0.4,  -0.4f, 0.0f,  1.0f,0.5f,0.0f,                                     //Pata izquierda
 		
-		 0.7f,  0.0f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.4f, -0.6f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                                    //Pata derecha 
+		 0.7f,  0.0f, 0.0f,  0.5f,0.5f,0.0f,
+		 0.4f, -0.6f, 0.0f,  0.5f,0.0f,0.5f,
+		 0.4f,  0.4f, 0.0f,  1.0f,0.5f,0.0f,                                     //Pata derecha 
 		
-		-0.9f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.55f,  0.2f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                                    //Tenaza izquierda parte de abajo
+		-0.9f,  0.4f, 0.0f,  1.0f,0.0f,0.5f,
+		-0.55f, 0.2f, 0.0f,  1.0f,0.5f,0.5f,
+		-0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                     //Tenaza izquierda parte de abajo
 
-		 0.9f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.55f,  0.2f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                                    //Tenaza derecha parte de abajo
+		 0.9f,  0.4f, 0.0f,  1.0f,0.0f,0.5f,
+		 0.55f, 0.2f, 0.0f,  1.0f,0.5f,0.5f,
+		 0.4f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                     //Tenaza derecha parte de abajo
 
-		-0.4f,  0.6f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.9f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		-0.6f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                                    //Tenaza izquierda parte de arriba
+		-0.4f,  0.6f, 0.0f,  0.0f,1.0f,0.0f,
+		-0.9f,  0.4f, 0.0f,  1.0f,0.5f,0.0f,
+		-0.6f,  0.4f, 0.0f,  0.5f,1.0f,0.0f,                                     //Tenaza izquierda parte de arriba
 
-		 0.4f,  0.6f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.9f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,
-		 0.6f,  0.4f, 0.0f,  1.0f,1.0f,0.0f,                                                    //Tenaza izquierda parte de arriba             
+		 0.4f,  0.6f, 0.0f,  0.0f,1.0f,0.0f,
+		 0.9f,  0.4f, 0.0f,  1.0f,0.5f,0.0f,
+		 0.6f,  0.4f, 0.0f,  0.5f,1.0f,0.0f,                                     //Tenaza derecha parte de arriba             
 	};
 
 	//Sección de índices de cada vértice
@@ -193,23 +193,38 @@ int main() {
 		//glDrawElements(GL_TRIANGLES,3,GL_UNSIGNED_INT,(void*)(sizeof(unsigned int)*6));
 		//glDrawElements(GL_TRIANGLES,3,GL_UNSIGNED_INT,(void*)(sizeof(unsigned int)*9));
 
-		//Instrucciones para dibujar al cangrejo
-		glDrawArrays(GL_LINE_LOOP,4 ,4);
+		//Instrucciones para dibujar al cangrejo (únicamente con líneas)
 		
-		glDrawArrays(GL_LINE_LOOP,8 ,3);
-		glDrawArrays(GL_LINE_LOOP,11,3);
-		
-		glDrawArrays(GL_LINE_LOOP,14,3);
-		glDrawArrays(GL_LINE_LOOP,17,3);
-		
-		glDrawArrays(GL_LINE_LOOP,20, 3);
-		glDrawArrays(GL_LINE_LOOP,23, 3);
-		
-		glDrawArrays(GL_LINE_LOOP, 26, 3);
-		glDrawArrays(GL_LINE_LOOP, 29, 3);
+		//glDrawArrays(GL_LINE_LOOP,4, 4);
 
-		//glDrawArrays(GL_TRIANGLES, 26, 3);
-		//glDrawArrays(GL_TRIANGLES, 29, 3);
+		//glDrawArrays(GL_LINE_LOOP,8, 3);
+		//glDrawArrays(GL_LINE_LOOP,11,3);
+		//
+		//glDrawArrays(GL_LINE_LOOP,14,3);
+		//glDrawArrays(GL_LINE_LOOP,17,3);
+		//
+		//glDrawArrays(GL_LINE_LOOP,20, 3);
+		//glDrawArrays(GL_LINE_LOOP,23, 3);
+		//
+		//glDrawArrays(GL_LINE_LOOP, 26, 3);
+		//glDrawArrays(GL_LINE_LOOP, 29, 3);
+
+
+		//Acá el cangrejo se dibuja con color
+		//Se utilizo esta función para dibujar el cuadrado con relleno
+		glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+		
+		glDrawArrays(GL_TRIANGLES, 8, 4);
+		glDrawArrays(GL_TRIANGLES, 11, 3);
+
+		glDrawArrays(GL_TRIANGLES, 14, 3);
+		glDrawArrays(GL_TRIANGLES, 17, 3);
+
+		glDrawArrays(GL_TRIANGLES, 20, 3);
+		glDrawArrays(GL_TRIANGLES, 23, 3);
+
+		glDrawArrays(GL_TRIANGLES, 26, 3);
+		glDrawArrays(GL_TRIANGLES, 29, 3);
 
         
         glBindVertexArray(0);

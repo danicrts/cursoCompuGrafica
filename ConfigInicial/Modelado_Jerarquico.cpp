@@ -15,10 +15,7 @@ const GLint WIDTH = 1200, HEIGHT = 800;
 
 //For Keyboard
 //Variables que permiten manipular la vista
-float	movX = 0.0f,
-movY = 0.0f,
-movZ = -5.0f,
-rot = 0.0f;
+float	movX = 0.0f, movY = 0.0f, movZ = -5.0f, rot = 0.0f;
 
 //For model
 //Esta variable permite generar la articulación
@@ -26,13 +23,17 @@ float hombro = 0.0f;
 float codo   = 0.0f;
 float muneca = 0.0f;
 
-float pulgar  = 0.0f;
-float pulgar2 = 0.0f;
+float menique_base    = 0.0f; //pulgar pasa a menique_base 
+float menique_extremo = 0.0f; //pulgar 2 pasa a menique_extremo
 
-float indice  = 0.0f;
-float medio   = 0.0f;
-float anular  = 0.0f;
-float menique = 0.0f;
+float anular_base     = 0.0f;
+float anular_extremo  = 0.0f;
+
+float medio_base      = 0.0f;
+float medio_extremo   = 0.0f;
+
+float indice_base     = 0.0f;
+float indice_extremo  = 0.0f;
 
 int main() {
 	glfwInit();
@@ -242,10 +243,11 @@ int main() {
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//C
 
+
 		//MODELOS PARA LOS DEDOS
-		//Modelo para el pulgar A (falange proximal)
-		model = glm::translate(modelTemp, glm::vec3(0.25f, 0.35f, 0.375f));
-		model = glm::rotate(model, glm::radians(pulgar), glm::vec3(0.0f, 0.0f, 1.0f));
+		//Modelo para el meñique (base)
+		model = glm::translate(modelTemp, glm::vec3(0.3f, 0.35f, 0.35f)); 
+		model = glm::rotate(model, glm::radians(menique_base), glm::vec3(0.0f, 0.0f, 1.0f));
 		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
 		color = glm::vec3(0.0f, 1.0f, 1.0f);
@@ -253,10 +255,9 @@ int main() {
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//Pulgar A
 
-		 
-		//Modelo para el pulgar B (falange distal)
+		//Modelo para el meñique (extremo)
 		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(pulgar2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(menique_extremo), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
 		color = glm::vec3(1.0f, 0.0f, 1.0f);
@@ -264,12 +265,68 @@ int main() {
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//Pulgar
 		 
-		//Modelo para el medio
-		//Modelo para el anular
-		 
-		  
-		//Modelo para el meñique
 
+		//Modelo para el anular (base)
+		model = glm::translate(modelTemp, glm::vec3(-0.5f, 0.0f, -0.35f)); // Posición del dedo anular
+		model = glm::rotate(model, glm::radians(anular_base), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(0.0f, 1.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Anular A
+
+		//Modelo para el anular (extremo)
+		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::rotate(model, glm::radians(anular_extremo), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(1.0f, 0.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Anular B
+
+		
+		//Modelo para el medio (base)
+		model = glm::translate(modelTemp, glm::vec3(-0.5f, 0.0f, -0.35f)); // Posición del dedo medio
+		model = glm::rotate(model, glm::radians(medio_base), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(0.0f, 1.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Medio A
+
+		//Modelo para el medio (extremo)
+		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::rotate(model, glm::radians(medio_extremo), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(1.0f, 0.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Medio B
+
+		  
+		//Modelo para el índice (base)
+		model = glm::translate(modelTemp, glm::vec3(-0.5f, -0.5f, 0.3f)); // Posición del dedo índice
+		model = glm::rotate(model, glm::radians(indice_base), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(0.0f, 1.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Índice A
+
+		//Modelo para el índice (extremo)
+		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f)); // Falange distal
+		model = glm::rotate(model, glm::radians(indice_extremo), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(1.0f, 0.0f, 1.0f); // Color del dedo
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Índice B
 
 		glBindVertexArray(0);
 
@@ -310,6 +367,7 @@ int main() {
 		 hombro += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		 hombro -= 0.18f;
+	 
 	 //Para tener movilidad en más articulaciones se deberán de configurar nuevas teclas
 	 //ESTAS SON PARA EL CODO
 	 if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
@@ -321,18 +379,57 @@ int main() {
 		 muneca += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		 muneca -= 0.18f;
+	 
+	 
 	 //PARA MANIPULAR LOS DEDOS
-	 //PULGAR A (falange proximal)
+	 //Para el meñique (base)
 	 if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		 pulgar += 0.18f;
+		 menique_base += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-		 pulgar -= 0.18f;
-	 //PULGAR B (falange distal)
+		 menique_base -= 0.18f;
+
+	 //Para el meñique (extremo)
 	 if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-		 pulgar2 += 0.18f;
+		 menique_extremo += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
-		 pulgar2 -= 0.18f;
+		 menique_extremo -= 0.18f;
 
+
+	 //Para el anular (base)
+	 if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	 anular_base += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+		 anular_base -= 0.18f;
+
+	 //Para el anular (extremo)
+	 if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
+		 anular_extremo += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+		 anular_extremo -= 0.18f;
+
+
+	 //Para el medio (base)
+	 if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+		 medio_base += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+		 medio_base -= 0.18f;
+
+	 //Para el medio (extremo)
+	 if (glfwGetKey(window, GLFW_KEY_COMMA) == GLFW_PRESS)
+		 medio_extremo += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_PERIOD) == GLFW_PRESS)
+		 medio_extremo -= 0.18f;
+
+
+	 //Para el índice (base)
+	 if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		 indice_base += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+		 indice_base -= 0.18f;
+
+	 //Para el índice (extremo)
+	 if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+		 indice_extremo += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_SEMICOLON) == GLFW_PRESS)
+		 indice_extremo -= 0.18f;
  }
-
-

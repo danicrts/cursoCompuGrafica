@@ -32,7 +32,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Modelado geometrico", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 3. Modelado geometrico. Ivan Daniel", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 
