@@ -24,7 +24,7 @@ int main() {
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	//Nombre que tendrá la ventana. *Recuerda actualizarlo con tu nombre.
-	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Dibujo de Primitivas en 2D", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Dibujo de Primitivas en 2D. Ivan Daniel", NULL, NULL);
 	glfwSetFramebufferSizeCallback(window, resize);
 	
 	//Verificacion de errores de creacion  ventana

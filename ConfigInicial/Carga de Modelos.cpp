@@ -100,8 +100,12 @@ int main( )
     //ACTIVIDADES COMPLEMENTARIAS DE LA PRÁCTICA
     //ELEGIR UN ENTORNO Y AGREGAR LOS ELEMENTOS QUE HAY EN EL
     //DESIERTO
-    //ELEMENTOS: CACTUS, PALMERAS,
+    //ELEMENTOS: Palmeras, cactus, vasija, casa, suelo.
     Model cactus((char*)"Models/cactus.obj");
+
+    Model suelo((char*)"Models/suelo_desierto.obj");
+
+    //Model palmera((char*)"Models/palmera/palmera.obj");
 
 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
@@ -132,23 +136,43 @@ int main( )
         // Draw the loaded model
         //Aqui se inicializa la matriz 
         glm::mat4 model(1);
+        
+        model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader);
 
         //Herramientas de transformación (Escala, rotación y traslación)
-        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        //Pone al segundo perro al lado del primero Pone al segundo perro arriba del primero Pone al segundo perro enfrente del primero
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader);
-        //model = glm::translate
 
-        
-        model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.1f));
-        model = glm::rotate(model, 180.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.02f, 0.002f, 0.01f));
-        
+
+        ////PARA LOS MODELOS DE LA ACTIVIDAD COMPLEMENTARIA
+        //CACTUS 1
+        model = glm::translate(model, glm::vec3(-2.0f, -0.5f, 0.0f));
+        model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.02f));        
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         cactus.Draw(shader);
+
+        ////CACTUS 2
+        //model = glm::translate(model, glm::vec3(0.2f, 0.5f, 0.0f));
+        //model = glm::rotate(model, 90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //cactus.Draw(shader);
+
+        //model = glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f));
+        //model = glm::rotate(model, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.0f));
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //suelo.Draw(shader);
+
+        ////model = glm::rotate(model, 90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //palmera.Draw(shader);
 
 
         // Swap the buffers

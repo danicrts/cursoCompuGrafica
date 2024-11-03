@@ -12,5 +12,5 @@ newmtl 10436_Cactus_v1
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.0900 0.0900 0.0900
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 10436_Cactus_v1_Diffuse.jpg
-	map_Kd 10436_Cactus_v1_Diffuse.jpg
+	map_Ka textura_cactus.jpg
+	map_Kd textura_cactus.jpg
