@@ -101,20 +101,84 @@ int main()
 	GLfloat vertices[] =
 	{
 		// Positions            // Colors              // Texture Coords
-		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		 0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		2.5f,0.0f,
-		 0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,	    2.5f,2.5f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,2.5f,
+		-0.5f, -0.5f, -0.5f,    1.0f, 0.0f, 0.0f,	   0.0f,  0.333f,
+		 0.5f, -0.5f, -0.5f,	0.0f, 1.0f, 0.0f,	   0.333f,0.333f,
+		 0.5f,  0.5f, -0.5f,    0.0f, 0.0f, 1.0f,      1.333f,0.666f,
+		-0.5f,  0.5f, -0.5f,    1.0f, 1.0f, 0.0f,	   0.0f,  0.666f,
+
+		//Para ahora tener un cubo se agregaran los siguientes vertices:
+		-0.5f, -0.5f,  0.5f,    1.0f, 0.0f, 1.0f,      0.666f,0.333f, 
+	     0.5f, -0.5f,  0.5f,    0.0f, 1.0f, 1.0f,      1.0f,  0.333f, 
+	     0.5f,  0.5f,  0.5f,    1.0f, 1.0f, 1.0f,      1.0f,  0.666f, 
+	    -0.5f,  0.5f,  0.5f,    0.0f, 0.0f, 0.0f,      0.666f,0.666f,  
+
+		//Cubo
+		-0.5f, -0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.0f,  0.666f,
+		 0.5f, -0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.333f,0.666f,
+		 0.5f,  0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.333f,0.333f,
+		 0.5f,  0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.333f,0.333f,
+		-0.5f,  0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.0f,  0.333f,
+		-0.5f, -0.5f, 0.5f,       1.0f, 0.0f,0.0f,     0.0f,  0.666f,
+
+		-0.5f, -0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.0f,  0.666f,
+		 0.5f, -0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.333f,0.666f,
+		 0.5f,  0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.333f,0.333f,
+		 0.5f,  0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.333f,0.333f,
+		-0.5f,  0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.0f,  0.333f,
+		-0.5f, -0.5f,-0.5f,       0.0f, 1.0f,0.0f,     0.0f,  0.666f,
+
+		 0.5f, -0.5f,  0.5f,      0.0f, 0.0f,1.0f,     0.666f,0.666f,
+		 0.5f, -0.5f, -0.5f,      0.0f, 0.0f,1.0f,     1.0f,  0.666f,
+		 0.5f,  0.5f, -0.5f,      0.0f, 0.0f,1.0f,     1.0f,  0.333f,
+		 0.5f,  0.5f, -0.5f,      0.0f, 0.0f,1.0f,     1.0f,  0.333f,
+		 0.5f,  0.5f,  0.5f,      0.0f, 0.0f,1.0f,     0.666f,0.333f,
+		 0.5f,  -0.5f, 0.5f,      0.0f, 0.0f,1.0f,     0.666f,0.666f,
+
+		-0.5f,  0.5f,  0.5f,      1.0f, 1.0f,0.0f,     0.666f,0.666f,
+		-0.5f,  0.5f, -0.5f,      1.0f, 1.0f,0.0f,     1.0f,  0.666f,
+		-0.5f, -0.5f, -0.5f,      1.0f, 1.0f,0.0f,     1.0f,  0.333f,
+		-0.5f, -0.5f, -0.5f,      1.0f, 1.0f,0.0f,     1.0f,  0.333f,
+		-0.5f, -0.5f,  0.5f,      1.0f, 1.0f,0.0f,     0.666f,0.333f,
+		-0.5f,  0.5f,  0.5f,      1.0f, 1.0f,0.0f,     0.666f,0.666f,
+
+		-0.5f, -0.5f, -0.5f,      0.0f, 1.0f,1.0f,     0.666f,0.333f,
+		 0.5f, -0.5f, -0.5f,      0.0f, 1.0f,1.0f,     1.0f,  0.333f,
+		 0.5f, -0.5f,  0.5f,      0.0f, 1.0f,1.0f,     1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,      0.0f, 1.0f,1.0f,     1.0f,  0.0f, 
+		-0.5f, -0.5f,  0.5f,      0.0f, 1.0f,1.0f,     0.666f,0.0f,
+		-0.5f, -0.5f, -0.5f,      0.0f, 1.0f,1.0f,     0.666f,0.333f,
+
+		-0.5f,  0.5f, -0.5f,      1.0f, 0.2f,0.5f,     0.666f,0.666f,
+		 0.5f,  0.5f, -0.5f,      1.0f, 0.2f,0.5f,     1.0f,  0.666f,
+		 0.5f,  0.5f,  0.5f,      1.0f, 0.2f,0.5f,     1.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,      1.0f, 0.2f,0.5f,     1.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,      1.0f, 0.2f,0.5f,     0.666f, 1.0f,
+		-0.5f,  0.5f, -0.5f,      1.0f, 0.2f,0.5f,     0.666f,0.666f,
 
 		
 	};
 
 	GLuint indices[] =
 	{  // Note that we start from 0!
-		0,1,3,
-		1,2,3
-	
+		0,1,2,
+		0,2,3,
+
+		4,5,6,
+		4,6,7,
+
+		0,3,7,
+		0,7,4,
+
+		1,5,6,
+		1,6,2,
+
+		0,1,5,
+		0,5,4,
+
+		3,2,6,
+		3,6,7
 	};
+
 
 	// First, set the container's VAO (and VBO)
 	GLuint VBO, VAO,EBO;
@@ -165,9 +229,13 @@ int main()
 	//glBindTexture(GL_TEXTURE_2D, texture1);
 	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
 	//Actividad complementaria
-	image = stbi_load("images/logoFI.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	//image = stbi_load("images/logoFI.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	//glBindTexture(GL_TEXTURE_2D, texture1);
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
+	//Actividad de la textura de dado
+    image = stbi_load("images/textura_dado.png", &textureWidth, &textureHeight, &nrChannels, 0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGB
 	glGenerateMipmap(GL_TEXTURE_2D);
 	if (image)
 	{
@@ -221,7 +289,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0); //Pasa de 6 a 36
 		glBindVertexArray(0);
 
 		// Swap the screen buffers
