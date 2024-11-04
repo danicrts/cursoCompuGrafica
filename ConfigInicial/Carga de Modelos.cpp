@@ -54,7 +54,7 @@ int main( )
     glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
     
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Carga de modelos y camara sintetica", nullptr, nullptr );
+    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Carga de modelos y camara sintetica. Ivan Daniel", nullptr, nullptr );
     
     if ( nullptr == window )
     {
@@ -105,8 +105,9 @@ int main( )
 
     Model suelo((char*)"Models/suelo_desierto.obj");
 
-    //Model palmera((char*)"Models/palmera/palmera.obj");
+    Model camello((char*)"Models/camello.obj");
 
+    Model carpa((char*)"Models/carpa.obj");
 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -149,30 +150,17 @@ int main( )
 
 
         ////PARA LOS MODELOS DE LA ACTIVIDAD COMPLEMENTARIA
-        //CACTUS 1
-        model = glm::translate(model, glm::vec3(-2.0f, -0.5f, 0.0f));
-        model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.02f));        
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        suelo.Draw(shader);
+
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         cactus.Draw(shader);
 
-        ////CACTUS 2
-        //model = glm::translate(model, glm::vec3(0.2f, 0.5f, 0.0f));
-        //model = glm::rotate(model, 90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-        //model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //cactus.Draw(shader);
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        camello.Draw(shader);
 
-        //model = glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f));
-        //model = glm::rotate(model, 0.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-        //model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.0f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //suelo.Draw(shader);
-
-        ////model = glm::rotate(model, 90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-        //model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //palmera.Draw(shader);
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        carpa.Draw(shader);
 
 
         // Swap the buffers
