@@ -96,18 +96,19 @@ int main( )
     // Load models
     //Los parámetros son la ruta de donde se encuentra el archivo 3D en forma de ruta de caracteres
     Model dog((char*)"Models/RedDog.obj");
+    Model craneo((char*)"Models/craneo.obj");
 
     //ACTIVIDADES COMPLEMENTARIAS DE LA PRÁCTICA
     //ELEGIR UN ENTORNO Y AGREGAR LOS ELEMENTOS QUE HAY EN EL
     //DESIERTO
     //ELEMENTOS: Palmeras, cactus, vasija, casa, suelo.
-    Model cactus((char*)"Models/cactus.obj");
+    Model cactus((char*)"Models/desierto/cactus.obj");
 
-    Model suelo((char*)"Models/suelo_desierto.obj");
+    Model suelo((char*)"Models/desierto/suelo_desierto.obj");
 
-    Model camello((char*)"Models/camello.obj");
+    Model camello((char*)"Models/desierto/camello.obj");
 
-    Model carpa((char*)"Models/carpa.obj");
+    Model carpa((char*)"Models/desierto/carpa.obj");
 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -138,15 +139,18 @@ int main( )
         //Aqui se inicializa la matriz 
         glm::mat4 model(1);
         
-        model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-3.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader);
 
         //Herramientas de transformación (Escala, rotación y traslación)
         //Pone al segundo perro al lado del primero Pone al segundo perro arriba del primero Pone al segundo perro enfrente del primero
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader);
+
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        craneo.Draw(shader);
 
 
         ////PARA LOS MODELOS DE LA ACTIVIDAD COMPLEMENTARIA
