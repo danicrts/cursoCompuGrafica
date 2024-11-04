@@ -57,7 +57,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Texturizado", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Texturizado. Ivan Daniel", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -102,9 +102,9 @@ int main()
 	{
 		// Positions            // Colors              // Texture Coords
 		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		1.0f,0.0f,
-		0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    1.0f,1.0f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,1.0f,
+		 0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		2.5f,0.0f,
+		 0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,	    2.5f,2.5f,
+		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,2.5f,
 
 		
 	};
@@ -140,11 +140,10 @@ int main()
 	glEnableVertexAttribArray(2);
 	glBindVertexArray(0);
 
-	//Load textures
-	//Para generar una textura se debe de generar un identificador 
+	// Load textures
 	GLuint texture1;
 	glGenTextures(1, &texture1);
-	glBindTexture(GL_TEXTURE_2D,texture1); 
+	glBindTexture(GL_TEXTURE_2D,texture1);
 	int textureWidth, textureHeight,nrChannels;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char *image;
@@ -152,21 +151,28 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-	//Diffuse map
-	//Ruta de dónde se encuentra la textura
-	//También es posible cargar texturas que contengan transparencias
-	//image = stbi_load("images/checker_Tex.png", &textureWidth, &textureHeight, &nrChannels,0);
-	//Texura con transparencia:
-	//Para que no haya problemas con este tipo de texturas se debe de cambiar de RGB a RGBA (A, canal alpha)
-	image = stbi_load("images/window.png", &textureWidth, &textureHeight, &nrChannels, 0);
-	glBindTexture(GL_TEXTURE_2D, texture1);
+	// Diffuse map
+	//Para trabajar con texturas sin transparencia
+	//image = stbi_load("images/checker_Tex.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	//glBindTexture(GL_TEXTURE_2D, texture1);
 	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	//Actividad complementaria
+	//image = stbi_load("images/piso.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	//glBindTexture(GL_TEXTURE_2D, texture1);
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	//Para trabajar con texturas con transparencia
+	//image = stbi_load("images/window.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	//glBindTexture(GL_TEXTURE_2D, texture1);
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
+	//Actividad complementaria
+	image = stbi_load("images/logoFI.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
 	glGenerateMipmap(GL_TEXTURE_2D);
 	if (image)
 	{
-		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image); //Sin transparencia
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //Con transparencia pasa de RGB a RGBA 
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else

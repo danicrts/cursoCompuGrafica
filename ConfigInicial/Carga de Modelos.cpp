@@ -98,17 +98,17 @@ int main( )
     Model dog((char*)"Models/RedDog.obj");
     Model craneo((char*)"Models/craneo.obj");
 
-    //ACTIVIDADES COMPLEMENTARIAS DE LA PRÁCTICA
-    //ELEGIR UN ENTORNO Y AGREGAR LOS ELEMENTOS QUE HAY EN EL
-    //DESIERTO
-    //ELEMENTOS: Palmeras, cactus, vasija, casa, suelo.
-    Model cactus((char*)"Models/desierto/cactus.obj");
+    ////ACTIVIDADES COMPLEMENTARIAS DE LA PRÁCTICA
+    ////ELEGIR UN ENTORNO Y AGREGAR LOS ELEMENTOS QUE HAY EN EL
+    ////DESIERTO
+    ////ELEMENTOS: Palmeras, cactus, vasija, casa, suelo.
+    //Model cactus((char*)"Models/desierto/cactus.obj");
 
-    Model suelo((char*)"Models/desierto/suelo_desierto.obj");
+    //Model suelo((char*)"Models/desierto/suelo_desierto.obj");
 
-    Model camello((char*)"Models/desierto/camello.obj");
+    //Model camello((char*)"Models/desierto/camello.obj");
 
-    Model carpa((char*)"Models/desierto/carpa.obj");
+    //Model carpa((char*)"Models/desierto/carpa.obj");
 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -153,18 +153,18 @@ int main( )
         craneo.Draw(shader);
 
 
-        ////PARA LOS MODELOS DE LA ACTIVIDAD COMPLEMENTARIA
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        suelo.Draw(shader);
+        //////PARA LOS MODELOS DE LA ACTIVIDAD COMPLEMENTARIA
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //suelo.Draw(shader);
 
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        cactus.Draw(shader);
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //cactus.Draw(shader);
 
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        camello.Draw(shader);
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //camello.Draw(shader);
 
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        carpa.Draw(shader);
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //carpa.Draw(shader);
 
 
         // Swap the buffers
